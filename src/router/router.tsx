@@ -10,8 +10,12 @@ export const Router: FC = () => {
   return (
     <NavigationContainer>
       <Navigator initialRouteName="Events">
-        <Screen name={'Home'} component={Home} />
-        <Screen name={'Events'} component={ArtEvents} />
+        <Screen name={'Home'} component={Home} options={{headerShown: false}} />
+        <Screen
+          name={'Events'}
+          component={ArtEvents}
+          options={{headerShown: false}}
+        />
       </Navigator>
     </NavigationContainer>
   );
