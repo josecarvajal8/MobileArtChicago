@@ -19,6 +19,8 @@ export const styles = StyleSheet.create({
     ...getFontSizes('headline'),
     fontFamily: fontsFam.semibold,
     color: colors.common_black,
+    maxWidth: 250,
+    textAlign: 'center',
   },
   buttons: {
     padding: 10,
