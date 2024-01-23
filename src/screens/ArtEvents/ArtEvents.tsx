@@ -3,11 +3,14 @@ import {getEvents} from '../../services/chicago-art-api';
 import {EventsResponse} from '../../model/art-events';
 import {BaseLayout} from '../../components/BaseLayout';
 import {EventTile} from '../../components/EventTile';
-import {FlatList, View} from 'react-native';
+import {ActivityIndicator, FlatList, View} from 'react-native';
 import {styles} from './ArtEvents.styles';
+import {useToggle} from '../../hooks/toggle';
+import {colors} from '../../constants/styling';
 
 export const ArtEvents: FC = () => {
   const [eventsData, setEventsData] = useState<EventsResponse | null>(null);
+  const {state: loading, handlers} = useToggle();
   const getEventData = async () => {
     const data = await getEvents();
     setEventsData(data);
@@ -15,6 +18,7 @@ export const ArtEvents: FC = () => {
   const onPagination = async () => {
     if (eventsData) {
       const {pagination} = eventsData;
+      handlers.on();
       const data = pagination.next_url
         ? await getEvents(pagination.next_url)
         : null;
@@ -25,6 +29,7 @@ export const ArtEvents: FC = () => {
             artEvents: [...(prev?.artEvents ?? []), ...data.artEvents],
           };
         });
+      handlers.off();
     }
   };
   useEffect(() => {
@@ -36,11 +41,16 @@ export const ArtEvents: FC = () => {
         <FlatList
           data={eventsData.artEvents}
           renderItem={({item}) => <EventTile {...item} />}
-          keyExtractor={item => item.id.toString()}
+          keyExtractor={(item, index) => `${item.id}-${index}`}
           ItemSeparatorComponent={() => <View style={styles.separator} />}
           contentContainerStyle={styles.contentList}
           showsVerticalScrollIndicator={false}
           onEndReached={onPagination}
+          ListFooterComponent={
+            loading ? (
+              <ActivityIndicator size={'large'} color={colors.secondary} />
+            ) : null
+          }
         />
       )}
     </BaseLayout>
