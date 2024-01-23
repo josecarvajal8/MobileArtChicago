@@ -12,6 +12,21 @@ export const ArtEvents: FC = () => {
     const data = await getEvents();
     setEventsData(data);
   };
+  const onPagination = async () => {
+    if (eventsData) {
+      const {pagination} = eventsData;
+      const data = pagination.next_url
+        ? await getEvents(pagination.next_url)
+        : null;
+      data &&
+        setEventsData(prev => {
+          return {
+            pagination: data.pagination,
+            artEvents: [...(prev?.artEvents ?? []), ...data.artEvents],
+          };
+        });
+    }
+  };
   useEffect(() => {
     getEventData();
   }, []);
@@ -25,6 +40,7 @@ export const ArtEvents: FC = () => {
           ItemSeparatorComponent={() => <View style={styles.separator} />}
           contentContainerStyle={styles.contentList}
           showsVerticalScrollIndicator={false}
+          onEndReached={onPagination}
         />
       )}
     </BaseLayout>

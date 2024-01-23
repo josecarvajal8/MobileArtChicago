@@ -3,12 +3,13 @@ import {EventsResponse} from '../model/art-events';
 import {sanitizeWebTags} from '../utils/adapters';
 import {fetchData} from '../utils/fetcher';
 
-export const getEvents = async (): Promise<EventsResponse> => {
+export const getEvents = async (
+  url = 'https://api.artic.edu/api/v1/events?limit=10',
+): Promise<EventsResponse> => {
   const {data, pagination} = await fetchData<ApiResponseEvents>({
     method: 'GET',
-    url: 'https://api.artic.edu/api/v1/events?limit=10',
+    url,
   });
-  console.log(pagination);
   const artEvents: EventsResponse['artEvents'] = data.map(el => {
     const {
       id,
@@ -31,7 +32,6 @@ export const getEvents = async (): Promise<EventsResponse> => {
       date_display,
     };
   });
-  console.log(artEvents);
   return {
     pagination,
     artEvents,
