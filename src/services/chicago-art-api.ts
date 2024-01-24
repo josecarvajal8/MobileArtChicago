@@ -1,5 +1,8 @@
-import {ApiResponseEvents} from '../model/api-chicago-art.interface';
-import {EventsResponse} from '../model/art-events';
+import {
+  ApiResponseEvents,
+  EventDetail,
+} from '../model/api-chicago-art.interface';
+import {ArtEventDetail, EventsResponse} from '../model/art-events';
 import {sanitizeWebTags} from '../utils/adapters';
 import {fetchData} from '../utils/fetcher';
 
@@ -35,5 +38,20 @@ export const getEvents = async (
   return {
     pagination,
     artEvents,
+  };
+};
+
+export const getEventDetail = async (url: string): Promise<ArtEventDetail> => {
+  const {data} = await fetchData<{data: EventDetail}>({
+    method: 'GET',
+    url,
+  });
+  return {
+    image: data.image_url,
+    description: data.description,
+    location: data.location,
+    startDate: data.start_date,
+    endDate: data.end_date,
+    dateDisplay: data.date_display,
   };
 };
