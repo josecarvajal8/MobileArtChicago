@@ -15,3 +15,12 @@ export interface EventsResponse {
   pagination: EventData['pagination'];
   artEvents: Array<ArtEvent>;
 }
+
+export interface ArtEventDetail {
+  image: string;
+  description: string;
+  location: string;
+  startDate: string;
+  endDate: string;
+  dateDisplay?: string;
+}
