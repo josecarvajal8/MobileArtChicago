@@ -21,10 +21,9 @@ export const Favorites: FC = () => {
     getSavedEvents();
   }, []);
 
-  console.log(savedEvents);
   return (
     <BaseLayout title="Favorites" rightButton={false}>
-      {savedEvents.length > 0  && (
+      {savedEvents.length > 0 && (
         <FlatList
           data={savedEvents}
           renderItem={({item}) => <EventTile {...item} />}
