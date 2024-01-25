@@ -11,6 +11,7 @@ import {colors} from '../../constants/styling';
 export const ArtEvents: FC = () => {
   const [eventsData, setEventsData] = useState<EventsResponse | null>(null);
   const {state: loading, handlers} = useToggle();
+
   const getEventData = async () => {
     const data = await getEvents();
     setEventsData(data);

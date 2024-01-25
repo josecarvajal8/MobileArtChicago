@@ -1,6 +1,6 @@
 import React, {FC, useEffect, useState} from 'react';
 import {BaseLayout} from '../../components/BaseLayout';
-import {ScrollView, Text} from 'react-native';
+import {Button, NativeModules, ScrollView, Text} from 'react-native';
 import {getEventDetail} from '../../services/chicago-art-api';
 import {ArtEventDetail} from '../../model/art-events';
 import {styles} from './EventDetail.styles';
@@ -26,6 +26,8 @@ export const EventDetail: FC<EventDetailProps> = ({route}) => {
   const [artEvent, setArtEvent] = useState<ArtEventDetail | null>(null);
   const [savedEvents, setSavedEvents] = useState<ArtEventDetail[]>([]);
   const {state: loading, handlers: loadingHandlers} = useToggle();
+  const {CalendarModule} = NativeModules;
+  console.log(CalendarModule);
   const getSavedEvents = async () => {
     const data = await getData(STORE_KEY_FAV_EVENTS);
     if (data) {
@@ -79,6 +81,16 @@ export const EventDetail: FC<EventDetailProps> = ({route}) => {
               image={artEvent.image_url}
               onSaveEvent={saveEvent}
               isEventSaved={isEventSaved}
+            />
+            <Button
+              title="add calendar"
+              onPress={() =>
+                CalendarModule.createCalendarEvent(
+                  artEvent.title,
+                  new Date(artEvent.start_date).toISOString(),
+                  new Date(artEvent.end_date).toISOString(),
+                )
+              }
             />
             <Text style={styles.date}>{`Date: ${eventDate()}`}</Text>
             {artEvent.location && (
