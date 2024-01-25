@@ -16,12 +16,8 @@ export const Router: FC = () => {
   const checkCalendarPermission = async () => {
     try {
       const statusCalendars = await check(PERMISSIONS.IOS.CALENDARS);
-      const statusWrite = await check(PERMISSIONS.IOS.CALENDARS_WRITE_ONLY);
 
-      if (
-        statusCalendars !== RESULTS.GRANTED ||
-        statusWrite !== RESULTS.GRANTED
-      ) {
+      if (statusCalendars !== RESULTS.GRANTED) {
         requestCalendarPermission();
       }
     } catch (error) {
@@ -32,7 +28,6 @@ export const Router: FC = () => {
   const requestCalendarPermission = async () => {
     try {
       const status = await request(PERMISSIONS.IOS.CALENDARS);
-      await request(PERMISSIONS.IOS.CALENDARS_WRITE_ONLY);
 
       if (status === RESULTS.GRANTED) {
         console.log('Calendar permission granted');
