@@ -1,5 +1,5 @@
 export type RootStackParamList = {
-  EventDetail: undefined;
+  EventDetail: {detailLink: string; title: string} | undefined;
   Events: undefined;
   Favorites: undefined;
   Home: undefined;

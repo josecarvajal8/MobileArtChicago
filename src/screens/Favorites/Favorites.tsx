@@ -21,7 +21,6 @@ export const Favorites: FC = () => {
     getSavedEvents();
   }, []);
 
-  console.log(savedEvents);
   return (
     <BaseLayout title="Favorites" rightButton={false}>
       {savedEvents.length > 0  && (

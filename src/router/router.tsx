@@ -17,7 +17,7 @@ export const Router: FC = () => {
         />
         <Screen
           name="EventDetail"
-          component={EventDetail}
+          component={EventDetail as any}
           options={{headerShown: false}}
         />
         <Screen
