@@ -57,9 +57,9 @@ export const EventDetail: FC<EventDetailProps> = ({route}) => {
 
   const eventDate = (): string => {
     if (artEvent) {
-      return artEvent?.dateDisplay
-        ? artEvent?.dateDisplay
-        : formatEventDate(artEvent?.startDate ?? '', artEvent?.endDate ?? '');
+      return artEvent?.date_display
+        ? artEvent?.date_display
+        : formatEventDate(artEvent?.start_date ?? '', artEvent?.end_date ?? '');
     }
     return '';
   };
@@ -76,7 +76,7 @@ export const EventDetail: FC<EventDetailProps> = ({route}) => {
             showsVerticalScrollIndicator={false}
             contentContainerStyle={styles.container}>
             <EventImage
-              image={artEvent.image}
+              image={artEvent.image_url}
               onSaveEvent={saveEvent}
               isEventSaved={isEventSaved}
             />

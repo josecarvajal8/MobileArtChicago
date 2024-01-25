@@ -17,11 +17,13 @@ export interface EventsResponse {
 }
 
 export interface ArtEventDetail {
-  image: string;
-  id: string;
+  image_url: string;
   description: string;
   location: string;
-  startDate: string;
-  endDate: string;
-  dateDisplay?: string;
+  start_date: string;
+  end_date: string;
+  date_display: string;
+  id: string;
+  title: string;
+  api_link: string;
 }

@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {RootStackParamList} from './router.interface';
-import {Home, ArtEvents, EventDetail} from '../screens';
+import {Home, ArtEvents, EventDetail, Favorites} from '../screens';
 
 const {Navigator, Screen} = createNativeStackNavigator<RootStackParamList>();
 
@@ -19,6 +19,11 @@ export const Router: FC = () => {
         <Screen
           name="EventDetail"
           component={EventDetail}
+          options={{headerShown: false}}
+        />
+        <Screen
+          name="Favorites"
+          component={Favorites}
           options={{headerShown: false}}
         />
       </Navigator>
