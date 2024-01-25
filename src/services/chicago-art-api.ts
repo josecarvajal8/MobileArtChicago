@@ -46,12 +46,16 @@ export const getEventDetail = async (url: string): Promise<ArtEventDetail> => {
     method: 'GET',
     url,
   });
+
   return {
-    image: data.image_url,
+    image_url: data.image_url,
     description: data.description,
     location: data.location,
-    startDate: data.start_date,
-    endDate: data.end_date,
-    dateDisplay: data.date_display,
+    start_date: data.start_date,
+    end_date: data.end_date,
+    date_display: data.date_display,
+    id: data.id.toString(),
+    title: data.title,
+    api_link: data.api_link,
   };
 };

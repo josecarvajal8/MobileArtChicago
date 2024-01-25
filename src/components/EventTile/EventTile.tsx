@@ -28,7 +28,7 @@ export const EventTile: FC<ArtEvent> = ({
         <Text numberOfLines={2} ellipsizeMode="tail" style={styles.title}>
           {title}
         </Text>
-        <Text style={styles.date}>{eventDate}</Text>
+        {eventDate && <Text style={styles.date}>{eventDate}</Text>}
       </View>
     </Pressable>
   );

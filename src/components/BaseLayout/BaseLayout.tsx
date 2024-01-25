@@ -43,7 +43,9 @@ export const BaseLayout: FC<BaseLayoutProps> = ({
           {title}
         </Text>
         {rightButton ? (
-          <Pressable style={styles.buttons}>
+          <Pressable
+            style={styles.buttons}
+            onPress={() => navigation.navigate('Favorites')}>
             <Image source={require('../../../assets/images/heart.png')} />
           </Pressable>
         ) : (

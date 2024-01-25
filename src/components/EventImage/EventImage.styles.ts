@@ -4,6 +4,7 @@ import {colors} from '../../constants/styling';
 export const styles = StyleSheet.create({
   container: {
     overflow: 'hidden',
+    flex: 1,
   },
   img: {
     width: 'auto',
