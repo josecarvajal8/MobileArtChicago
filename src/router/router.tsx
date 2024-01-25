@@ -2,7 +2,7 @@ import React, {FC, useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {RootStackParamList} from './router.interface';
-import {Home, ArtEvents, EventDetail, Favorites} from '../screens';
+import {ArtEvents, EventDetail, Favorites} from '../screens';
 import {PERMISSIONS, RESULTS, check, request} from 'react-native-permissions';
 
 const {Navigator, Screen} = createNativeStackNavigator<RootStackParamList>();
@@ -42,7 +42,6 @@ export const Router: FC = () => {
   return (
     <NavigationContainer>
       <Navigator initialRouteName="Events">
-        <Screen name={'Home'} component={Home} options={{headerShown: false}} />
         <Screen
           name={'Events'}
           component={ArtEvents}
@@ -50,7 +49,7 @@ export const Router: FC = () => {
         />
         <Screen
           name="EventDetail"
-          component={EventDetail}
+          component={EventDetail as any}
           options={{headerShown: false}}
         />
         <Screen
