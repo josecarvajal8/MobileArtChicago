@@ -53,5 +53,6 @@ export const getEventDetail = async (url: string): Promise<ArtEventDetail> => {
     startDate: data.start_date,
     endDate: data.end_date,
     dateDisplay: data.date_display,
+    id: data.id.toString(),
   };
 };

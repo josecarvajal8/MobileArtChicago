@@ -18,6 +18,7 @@ export interface EventsResponse {
 
 export interface ArtEventDetail {
   image: string;
+  id: string;
   description: string;
   location: string;
   startDate: string;

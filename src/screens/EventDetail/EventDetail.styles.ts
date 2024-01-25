@@ -3,7 +3,7 @@ import {colors, fontsFam, getFontSizes} from '../../constants/styling';
 
 export const styles = StyleSheet.create({
   container: {
-    gap: 6,
+    paddingBottom: 120,
   },
   date: {
     ...getFontSizes('title'),
