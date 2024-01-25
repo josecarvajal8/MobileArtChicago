@@ -36,7 +36,7 @@ export const ArtEvents: FC = () => {
     getEventData();
   }, []);
   return (
-    <BaseLayout title="Events">
+    <BaseLayout title="Events" leftButton={false}>
       {eventsData?.artEvents && (
         <FlatList
           data={eventsData.artEvents}
