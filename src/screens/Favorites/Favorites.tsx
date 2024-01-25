@@ -23,7 +23,7 @@ export const Favorites: FC = () => {
 
   return (
     <BaseLayout title="Favorites" rightButton={false}>
-      {savedEvents.length > 0 && (
+      {savedEvents.length > 0  && (
         <FlatList
           data={savedEvents}
           renderItem={({item}) => <EventTile {...item} />}
